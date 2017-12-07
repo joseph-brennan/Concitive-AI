@@ -1,0 +1,6 @@
+"""
+Joey Brennan
+"""
+
+
+class NeuralNet:

@@ -1,7 +1,9 @@
 (ns match.match
   (:gen-class))
 
-(defn variable  "Returns a variable with the given name"
+;; VARIABLES
+(defn variable
+  "Returns a variable with the given name"
   [x]
   (symbol (str "?" (name x))))
 
@@ -17,6 +19,8 @@
   {:pre [(is-var? x)]}
   (symbol (subs (name x) 1)))
 
+
+;; FRAMES
 (defn header
   "Returns the frame header."
   [frame]
@@ -27,6 +31,8 @@
   [frame]
   (rest frame))
 
+
+;; ROLES
 (defn roles
   "Returns the roles in the frame."
   [frame]
@@ -50,6 +56,8 @@
         pair
         (role-pair-filler (first pair)))))
 
+
+;; CANONICAL FRAMES
 (defn map-to-alist
   "Converts a map into an association list"
   [m]
@@ -86,6 +94,8 @@
 
 (def empty-binding-form '(true))
 
+
+;; MATCHING
 (declare match-var match-args match-canonical match)
 
 (defn match-var
