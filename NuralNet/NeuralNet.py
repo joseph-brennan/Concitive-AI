@@ -37,11 +37,12 @@ class NeuralNet:
 
         def change(self, increment, value):
             dy = -self.decay * self.output
+
             total = 0
 
             for pair in self.weight:
                 n = self.weight[pair]
-                
+
                 if pair == self:
                     continue
                 new_weight = -self.forgetting * self.output
@@ -62,7 +63,6 @@ class NeuralNet:
 
             self.output = dy / (1 + abs(dy))
 
-
     # ================================================================
 
     def __init__(self, decay, act, forget, gain):
@@ -78,6 +78,13 @@ class NeuralNet:
     def printer(self):
         for p in self.brain:
             print(self.neu.print_weight(p))
+
+    def increment(self, input, step):
+        if len(input) != self.brain.__len__():
+            return
+        for i in input:
+            for j in self.brain:
+                self.neu.change(j, step, i)
 
 
 if __name__ == '__main__':
